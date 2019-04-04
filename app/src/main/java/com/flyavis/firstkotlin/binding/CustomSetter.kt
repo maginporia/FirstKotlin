@@ -4,18 +4,9 @@ import android.net.Uri
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.flyavis.firstkotlin.R
 
 object CustomSetter {
-
-    @BindingAdapter("app:setImageByteArray")
-    @JvmStatic
-    fun loadImageByteArray(view: ImageView, bytes: ByteArray) {
-        Glide
-            .with(view.context)
-            .load(bytes)
-            .centerCrop()
-            .into(view)
-    }
 
     @BindingAdapter("app:setImageUrl")
     @JvmStatic
@@ -24,6 +15,7 @@ object CustomSetter {
             Glide
                 .with(view.context)
                 .load(uri)
+                .placeholder(R.drawable.nopic)
                 .centerCrop()
                 .into(view)
         }

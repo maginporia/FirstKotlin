@@ -47,10 +47,9 @@ class ContentFragment : DaggerFragment() {
         if (arguments?.get("key") != null) {
             i = arguments?.get("key") as Int
         }
-        viewModel.getAnimals().observe(viewLifecycleOwner, Observer {
-            controller.setData(it, i)
+        viewModel.getAnimals(i).observe(viewLifecycleOwner, Observer {
+            controller.submitList(it)
             Timber.d("observed")
-            viewModel.getAnimals().removeObservers(viewLifecycleOwner)
         })
 
     }
