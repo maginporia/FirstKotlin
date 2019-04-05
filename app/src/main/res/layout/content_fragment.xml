@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable name="viewModel" type="com.flyavis.firstkotlin.ui.ContentViewModel"/>
     </data>
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.ContentFragment">
 
         <com.airbnb.epoxy.EpoxyRecyclerView android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:id="@+id/epoxyRecyclerView">
+                                            android:id="@+id/epoxyRecyclerView"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:scaleX="0"
+                android:scaleY="0"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="@+id/epoxyRecyclerView"/>
+        <com.yy.mobile.rollingtextview.RollingTextView
+                android:scaleY="0"
+                android:scaleX="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="24sp"
+                android:shadowColor="#ff44ffdd"
+                android:shadowDx="10"
+                android:shadowDy="10"
+                android:shadowRadius="10" android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"/>
 
-        </com.airbnb.epoxy.EpoxyRecyclerView>
-
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -36,7 +36,7 @@ internal class AppModule {
         return Retrofit.Builder().baseUrl("http://data.coa.gov.tw/Service/OpenData/")
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
+//            .client(client)
             .build()
     }
 

@@ -11,7 +11,17 @@ class ContentViewModel
 @Inject
 internal constructor(private val repository: Repository) : ViewModel() {
 
-    fun getAnimals(key: Int): LiveData<PagedList<Animal>> {
-        return repository.getAnimalsAsync(key)
+    private lateinit var liveData: LiveData<PagedList<Animal>>
+
+    fun setKey(key: Int) {
+        liveData = repository.getAnimalsAsync(key)
+    }
+
+    fun getAnimals(): LiveData<PagedList<Animal>> {
+        return liveData
+    }
+
+    fun getDataSize(): LiveData<Int> {
+        return repository.getDataSize()
     }
 }

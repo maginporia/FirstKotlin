@@ -8,7 +8,7 @@ class AnimalDataSourceFactory(
     private val service: Service,
     private val key: Int
 ) : DataSource.Factory<Int, Animal>() {
-    private val sourceLiveData = MutableLiveData<AnimalDataSource>()
+    val sourceLiveData = MutableLiveData<AnimalDataSource>()
     override fun create(): DataSource<Int, Animal> {
         val source = AnimalDataSource(service, key)
         sourceLiveData.postValue(source)

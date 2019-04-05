@@ -1,6 +1,7 @@
 package com.flyavis.firstkotlin.data
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.ItemKeyedDataSource
 import com.flyavis.firstkotlin.data.network.HttpResult
 import com.flyavis.firstkotlin.data.network.Service
@@ -16,6 +17,13 @@ class AnimalDataSource(
     private val service: Service,
     private val key: Int
 ) : ItemKeyedDataSource<Int, Animal>() {
+
+    val dataSizeLiveData = MutableLiveData<Int>()
+
+    fun getDataSize(): MutableLiveData<Int> {
+        return dataSizeLiveData
+    }
+
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Animal>) {
         CoroutineScope(Dispatchers.IO).launch {
             val result = getData()
@@ -42,6 +50,8 @@ class AnimalDataSource(
                                 }
                                 callback.onResult(catList)
                             }
+                            dataSizeLiveData.value = 0
+                            dataSizeLiveData.value = result.data.body()!!.size
                             // Update layout here
                         } else {
                             // 400 - 500
